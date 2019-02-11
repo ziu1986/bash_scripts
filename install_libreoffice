@@ -1,0 +1,19 @@
+#! /bin/bash
+SRC=${1}
+echo $SRC
+if [[ -z $SRC ]]; then
+    echo "This is libreoffice install script talking."
+    echo "You need to provide the tar-ball name!"
+fi
+if [[ -e $SRC ]]; then
+    echo "Uninstall previously installed version..."
+    sudo apt-get purge libreoffice?
+    echo "Unzipping tar-ball."
+    INSTALL_DIR=`basename ${SRC} _Linux_x86-64_deb.tar.gz`
+    tar zxvf $SRC
+    
+    cd ${INSTALL_DIR}*/DEBS
+    echo "Install new version."
+    sudo dpkg -i *.deb
+fi
+

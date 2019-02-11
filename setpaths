@@ -1,0 +1,57 @@
+#! /bin/bash
+
+# Setting all neccessary paths
+# General settings
+export WORKSPACE=$HOME
+export DATA=$HOME/Data
+export PY_SCRIPTS=$WORKSPACE/Python
+export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
+
+# Include Panoply
+alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
+
+# Mounting of network resources
+src_data() {
+    target=${1}
+    case $target in
+        work)
+            echo "Mounting abel/work"
+            sshfs sfalk@abel.uio.no:/work/users/sfalk ${DATA}/abel
+            ;;
+        input_data)
+            echo "Mounting abel/input_data"
+            sshfs sfalk@abel.uio.no:/work/projects/cicero/ctm_input/ ${DATA}/CTM3_input_data
+            ;;
+        BrXplo)
+            echo "Mounting BrXplo on pfs"
+            sshfs hy0485@uc1.scc.kit.edu:/pfs/imk/imk-asf/common/results/EMAC/BrXplo ${DATA}/BrXplo_data
+            ;;
+        CTM3_Oivind)
+            echo "Mounting /div/pdo/cixpag/oivinho/CTM3_output/"
+            sshfs sfalk@pdo.uio.no:/div/pdo/cixpag/oivinho/CTM3_output/ ${DATA}/CTM3_Oivind_data
+            ;;
+        astra)
+            echo "Mounting /projects/researchers/researchers01/sfalk"
+            sshfs sfalk@abel.uio.no:/projects/researchers/researchers01/sfalk/ ${DATA}/astra_data
+            ;;
+        nird)
+            echo "Mounting /tos-project1/NS2806K/sfalk/"
+            sshfs sfalk@login.nird.sigma2.no:/tos-project1/NS2806K/sfalk/ ${DATA}/nird_data
+            ;;
+        uio_home)
+            echo "Mounting /uio/kant/geo-metos-u4/sfalk/"
+            sshfs sfalk@login.uio.no:/uio/kant/geo-metos-u1/sfalk/ ${HOME}/UiO_home
+            ;;
+        *)
+            echo "No valid mount point!"
+            echo "Options: work; input_data; BrXplo; CTM3_Oivind; astra; nird; uio_home"
+    esac
+    #
+    
+    #
+    #
+    #
+    #
+}
+
+echo "Setting work environment..."
