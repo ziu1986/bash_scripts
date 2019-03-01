@@ -5,7 +5,7 @@
 #
 #----------------------------------------------------------------------------
 usage=$"Transform ozone output from g/cm3 to mol/mol. 
-              ./cdo_vmr <path_to_ozone_files> --surface" 
+              ./cdo_vmr2.sh <path_to_ozone_files> --surface" 
 
 srcdir=${1}
 opttype=${2}
