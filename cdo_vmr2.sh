@@ -66,7 +66,7 @@ done
 
 cd ..
 # Concatenate the files
-cdo cat VMR/*.nc ${outfile:0:13}.nc
+cdo cat VMR/*.nc ${outfile:0:7}.nc
 
 # Delete the temporary files
 echo "Removing the temporary files in VMR."
