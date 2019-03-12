@@ -30,6 +30,7 @@ for infile in `ls ${srcdir}/*/*.nc` ; do
 done
 
 echo "Concatenating files."
-cdo cat *.nc "../${outfile:0:25}.nc"
+cdo cat *.nc "${outfile:0:25}.nc"
+mv "${outfile:0:25}.nc" ..
 cd ..
 rm -r "${selection}/"
