@@ -4,7 +4,7 @@
 # Transform Ozone output from kg to mol/mol
 #
 #----------------------------------------------------------------------------
-usage=$"Transform ozone output from kg to mol/mol. 
+usage=$"Transform ozone monthly average output from kg to mol/mol. 
               ./cdo_vmr <path_to_ozone_files> --surface" 
 
 srcdir=${1}
@@ -33,6 +33,9 @@ fi
 cd VMR
 echo `pwd`
 
+Mair=28.9644
+MO3=47.9982
+
 # Loop all files
 for infile1 in `ls ${srcdir}*.nc` ; do
     outfile=${infile1/"avgsav"/"avg_ozone"}
@@ -42,10 +45,10 @@ for infile1 in `ls ${srcdir}*.nc` ; do
         # Convert from g/cm3 to mol/mol
         if [[ $select_level -eq 1 ]]; then
             #echo $infile1 $outfile
-            cdo mulc,28.949 -divc,48 -div -sellevidx,1 -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
+            cdo mulc,$Mair -divc,$MO3 -div -sellevidx,1 -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         else
             #echo $infile1 $outfile
-            cdo mulc,28.949 -divc,48 -div -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
+            cdo mulc,$Mair -divc,$MO3 -div -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         fi
         # Rename variable
         #ncrename -v AIR,"O3" ${outfile}
