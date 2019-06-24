@@ -51,7 +51,7 @@ for infile1 in `ls ${srcdir}*.nc` ; do
             cdo mulc,$Mair -divc,$MO3 -div -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         fi
         # Rename variable
-        #ncrename -v AIR,"O3" ${outfile}
+        ncrename -v AIR,"O3" ${outfile}
         # Change netcdf units attribute
         ncatted -a units,"O3",m,c,"mol/mol" ${outfile}
     fi
