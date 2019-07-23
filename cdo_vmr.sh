@@ -40,20 +40,24 @@ MO3=47.9982
 for infile1 in `ls ${srcdir}*.nc` ; do
     outfile=${infile1/"avgsav"/"avg_ozone"}
     outfile=`basename ${outfile}`
-    
+    echo `pwd`
+    ls .
+    #echo $outfile
     if [[ ! -e ${outfile} ]]; then
         # Convert from g/cm3 to mol/mol
         if [[ $select_level -eq 1 ]]; then
-            #echo $infile1 $outfile
+            echo $infile1 $outfile
             cdo mulc,$Mair -divc,$MO3 -div -sellevidx,1 -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         else
-            #echo $infile1 $outfile
+            echo $infile1 $outfile
             cdo mulc,$Mair -divc,$MO3 -div -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         fi
         # Rename variable
         ncrename -v .AIR,"O3" ${outfile}
         # Change netcdf units attribute
         ncatted -a units,"O3",m,c,"mol/mol" ${outfile}
+    else
+        echo "Files already exist!"
     fi
     
 done

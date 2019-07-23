@@ -1,8 +1,10 @@
 #!/bin/bash
 month=('01' '02' '03' '04' '05' '06' '07' '08' '09' '10' '11' '12')
 #------------------------------------------------------------------------
+
 # Set the workdirectory
-WORKDIR=$DATA/abel/C3RUN_emep_full.310718.21281
+#WORKDIR=$DATA/astra_data/ctm_results/C3RUN_default
+WORKDIR=${1}
 DESTDIR=scavenging_monthly
 # Dummy names
 ifiles=scavenging_daily/scavenging_daily_2d_2005
@@ -22,7 +24,7 @@ for imonth in ${month[@]}; do
         cdo cat ${input} ${output}
     fi
     # Compute monthly average
-    output_mm=mm_`basename ${output}`
+    #output_mm=mm_`basename ${output}`
     # Compute monthly sums
     output_sum=sum_`basename ${output}`
     if [ ! -e ${output_mm} ]; then
@@ -33,7 +35,7 @@ for imonth in ${month[@]}; do
     fi
     # Add the lost meta data (YEAR, MONTH, VERSION, tracer_name)
     echo "Adding lost meta data..."
-    #ncks -A -v YEAR,MONTH,tracer_name,VERSION ${ifiles}${imonth}01.nc ${output_mm}
+   # ncks -A -v YEAR,MONTH,tracer_name,VERSION ${ifiles}${imonth}01.nc ${output_mm}
     ncks -A -v YEAR,MONTH,tracer_name,VERSION ${ifiles}${imonth}01.nc ${output_sum}
     echo "Deleting temporary files..."
     rm ${output}
