@@ -58,13 +58,13 @@ for infile1 in `ls ${srcdir}*.nc` ; do
             cdo mulc,$Mair -divc,$MO3 -div -sellevidx,1 -selname,O3 ${infile1} -selname,air_densit ${infile2} ${outfile}
             #cdo mulc,$Mair -divc,$MSO2 -div -sellevidx,1 -selname,SO2 ${infile1} -selname,air_densit ${infile2} ${outfile}
             #cdo mulc,$Mair -divc,$MNO2 -div -sellevidx,1 -selname,NO2 ${infile1} -selname,air_densit ${infile2} ${outfile}
-            #cdo mulc,$Mair -divc,MCO -div -sellevidx,1 -selname,CO ${infile1} -selname,air_densit ${infile2} ${outfile}
+            #cdo mulc,$Mair -divc,$MCO -div -sellevidx,1 -selname,CO ${infile1} -selname,air_densit ${infile2} ${outfile}
         else
             #echo $infile1 $outfile
             cdo mulc,$Mair -divc,$MO3 -div -selname,O3 ${infile1} -selname,air_densit ${infile2} ${outfile}
             #cdo mulc,$Mair -divc,$MSO2 -div -selname,SO2 ${infile1} -selname,air_densit ${infile2} ${outfile}
             #cdo mulc,$Mair -divc,$MNO2 -div -selname,NO2 ${infile1} -selname,air_densit ${infile2} ${outfile}
-            #cdo mulc,$Mair -divc,MCO -div -selname,CO ${infile1} -selname,air_densit ${infile2} ${outfile}
+            #cdo mulc,$Mair -divc,$MCO -div -selname,CO ${infile1} -selname,air_densit ${infile2} ${outfile}
         fi
         # Rename variable
         ncrename -v .air_densit,"O3" ${outfile}
@@ -90,5 +90,8 @@ cdo cat VMR/*.nc "${outfile:0:13}.nc"
 #cdo cat VMR/*.nc "${outfile:0:10}.nc"
 
 # Delete the temporary files
-echo "Removing the temporary files in VMR."
-rm VMR/*
+if [[ -e '${outfile:0:13}.nc' ]]; then
+    echo "Removing the temporary files in VMR."
+    rm -r VMR
+done
+

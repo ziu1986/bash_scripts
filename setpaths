@@ -3,9 +3,10 @@
 # Setting all neccessary paths
 # General settings
 export WORKSPACE=$HOME
-export DATA=$HOME/Data
+export DATA=/data
 export PY_SCRIPTS=$WORKSPACE/Python
 export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
+export PATH=$PATH:${HOME}/Programs/grib_api-1.28.0/bin/bin
 
 # Include Panoply
 alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
@@ -40,7 +41,7 @@ src_data() {
             ;;
         uio_home)
             echo "Mounting /uio/kant/geo-metos-u4/sfalk/"
-            sshfs sfalk@login.uio.no:/uio/kant/geo-metos-u1/sfalk/ ${HOME}/UiO_home
+            sshfs sfalk@login.uio.no:/uio/kant/geo-metos-u1/sfalk/privat/Documents/ /kant
             ;;
         *)
             echo "No valid mount point!"

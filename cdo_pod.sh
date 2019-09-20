@@ -6,7 +6,7 @@
 #----------------------------------------------------------------------------
 usage=$"Compute PODy from given FstO3_inst field in OsloCTM3 output. 
               ./cdo_pod <path> <pody>
-Valid choices: pod1, pod2, pod3"
+Valid choices: pod0, pod1, pod2, pod3"
 
 srcdir=${1}
 podtype=${2}
@@ -18,6 +18,9 @@ podtype=${2}
 tmp_outfile=tmp_output.nc
 
 case $podtype in
+    pod0)
+        trhold=0
+        ;;
     pod1)
         trhold=1
         ;;
@@ -49,7 +52,7 @@ for infile in `ls $srcdir/scavenging_daily_stomata_*.nc`; do
    
     # Subtract ${trhold} and mask all entries which are below 0
     cdo -mul -selname,FstO3_inst $infile -gec,0 -subc,${trhold} -selname,FstO3_inst $infile $tmp_outfile
-    # Time integration
+    # Time integration and unit conversion
     cdo mulc,1e-6 -timsum -mulc,3600 -selname,FstO3_inst $tmp_outfile $outfile
     # Remove temporary files
     rm $tmp_outfile
