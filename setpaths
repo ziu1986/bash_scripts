@@ -48,11 +48,12 @@ src_data() {
             echo "Options: work; input_data; BrXplo; CTM3_Oivind; astra; nird; uio_home"
     esac
     #
-    
-    #
-    #
-    #
-    #
+}
+
+unsrc_data() {
+    tgt=${1}
+    fusermount -u $tgt
+
 }
 
 echo "Setting work environment..."
