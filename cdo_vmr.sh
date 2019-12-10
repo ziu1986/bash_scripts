@@ -1,7 +1,7 @@
 #! /bin/bash
 #----------------------------------------------------------------------------
 #
-# Transform Ozone output from kg to mol/mol
+# Transform Ozone output from kg to mol/mol (monthly average output in OsloCTM3)
 #
 #----------------------------------------------------------------------------
 usage=$"Transform ozone monthly average output from kg to mol/mol. 
@@ -44,13 +44,13 @@ for infile1 in `ls ${srcdir}*.nc` ; do
     ls .
     #echo $outfile
     if [[ ! -e ${outfile} ]]; then
-        # Convert from g/cm3 to mol/mol
+        # Convert from kg to mol/mol
         if [[ $select_level -eq 1 ]]; then
             echo $infile1 $outfile
-            cdo mulc,$Mair -divc,$MO3 -div -sellevidx,1 -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
+            cdo -L mulc,$Mair -divc,$MO3 -div -sellevidx,1 -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         else
             echo $infile1 $outfile
-            cdo mulc,$Mair -divc,$MO3 -div -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
+            cdo -L mulc,$Mair -divc,$MO3 -div -selname,O3 ${infile1} -selname,AIR ${infile1} ${outfile}
         fi
         # Rename variable
         ncrename -v .AIR,"O3" ${outfile}
