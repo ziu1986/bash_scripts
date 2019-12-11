@@ -11,6 +11,11 @@ export PATH=$PATH:${HOME}/Programs/grib_api-1.28.0/bin/bin
 # Include Panoply
 alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
 
+# Include plotdigitizer
+plotdigit() {
+    "java -Xmx128m -jar ${HOME}/Programs/PlotDigitizer/PlotDigitizer.jar"
+}
+
 # Mounting of network resources
 src_data() {
     target=${1}
@@ -32,8 +37,9 @@ src_data() {
             sshfs sfalk@pdo.uio.no:/div/pdo/cixpag/oivinho/CTM3_output/ ${DATA}/CTM3_Oivind_data
             ;;
         astra)
-            echo "Mounting /projects/researchers/researchers01/sfalk"
-            sshfs sfalk@abel.uio.no:/projects/researchers/researchers01/sfalk/ ${DATA}/astra_data
+            echo "Mounting ASTRA"
+            #sshfs sfalk@abel.uio.no:/projects/researchers/researchers01/sfalk/ ${DATA}/astra_data
+            sshfs sfalk@login.uio.no:/net/astra/astra-01/sfalk/ ${DATA}/astra_data
             ;;
         nird)
             echo "Mounting /tos-project1/NS2806K/sfalk/"
@@ -55,5 +61,8 @@ unsrc_data() {
     fusermount -u $tgt
 
 }
+
+# Alias
+alias ssh_centos='ssh -X -i ~/.ssh/iaas-cloud_ceres.key.pub centos@158.39.75.138'
 
 echo "Setting work environment..."
