@@ -10,7 +10,7 @@
 ##### Functions
 usage()
 {
-    echo "Usage: ./bash_looping [[ -s | --start_year start_year ] [ -e | --end_year end_year]]"
+    echo "Usage: ./bash_looping [[ -s | --start_year start_year ] [ -e | --end_year end_year][ -o | --output_dir output_directory]]"
 }
 
 check_null()
@@ -35,6 +35,11 @@ options()
                 shift
                 end_year=${1}
                 echo "End year: ${end_year}"
+                ;;
+            -o | --output_dir )                
+                shift
+                output_dir=${1}
+                echo "output_dir: ${output_dir}"
                 ;;
             -h | --help )           
                 usage
@@ -65,7 +70,7 @@ cycle_years() {
 download_from_ftp() {
     year=$1
     echo "Download data for " $year
-    #get -r $year
+    #wget --ftp-user=nbrown  --ftp-password='Stedman5!' ftp://<serveradress to be put>/$year/* ${output_dir}
 }
 
 ### MAIN
