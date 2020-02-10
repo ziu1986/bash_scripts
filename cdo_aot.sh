@@ -22,6 +22,9 @@ case $aottype in
     aot30)
         trhold=30
         ;;
+    aot0)
+        trhold=0
+        ;;
     *)
         echo "No valid threshold chosen!"
         echo "${usage}"
