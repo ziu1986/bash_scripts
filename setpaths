@@ -11,11 +11,6 @@ export PATH=$PATH:${HOME}/Programs/grib_api-1.28.0/bin/bin
 # Include Panoply
 alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
 
-# Include plotdigitizer
-plotdigit() {
-    "java -Xmx128m -jar ${HOME}/Programs/PlotDigitizer/PlotDigitizer.jar"
-}
-
 # Mounting of network resources
 src_data() {
     target=${1}
@@ -58,7 +53,7 @@ src_data() {
 
 unsrc_data() {
     tgt=${1}
-    fusermount -u $tgt
+    fusermount -uz $tgt
 
 }
 
