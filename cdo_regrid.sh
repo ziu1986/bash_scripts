@@ -9,7 +9,7 @@ src_grid="osloctm3_grid"
 tgt_grid="hardacre_grid"
 
 if [ ! $INFILE ]; then 
-   echo "Usage: regrid_cdo INPUTFILE <OUTPUTFILE>"
+   echo "Usage: cdo_regrid INPUTFILE <OUTPUTFILE>"
    exit
 fi
 if [ ! $OUTFILE ]; then
