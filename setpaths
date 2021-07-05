@@ -16,12 +16,12 @@ src_data() {
     target=${1}
     case $target in
         work)
-            echo "Mounting abel/work"
-            sshfs sfalk@abel.uio.no:/work/users/sfalk ${DATA}/abel
+            echo "Mounting saga/work"
+            sshfs sfalk@login.saga.sigma2.no:/cluster/work/users/sfalk ${DATA}/saga
             ;;
         input_data)
-            echo "Mounting abel/input_data"
-            sshfs sfalk@abel.uio.no:/work/projects/cicero/ctm_input/ ${DATA}/CTM3_input_data
+            echo "Mounting saga/input_data"
+            sshfs sfalk@login.saga.sigma2.no:/cluster/projects/nn9188k/OsloCTM3 ${DATA}/CTM3_input_data
             ;;
         BrXplo)
             echo "Mounting BrXplo on pfs"
@@ -55,6 +55,23 @@ unsrc_data() {
     tgt=${1}
     fusermount -uz $tgt
 
+}
+
+use_conda() {
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/sfalk/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/sfalk/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/sfalk/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/sfalk/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
 }
 
 # Alias
