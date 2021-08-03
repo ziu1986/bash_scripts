@@ -88,7 +88,11 @@
 			   "/usr/share/emacs/26.3/") load-path))  
 
     (setq load-path (cons (expand-file-name 
-			   "~/bin/emacs") load-path))  
+			   "~/bin/emacs") load-path))
+
+    (setq load-path (cons (expand-file-name 
+			   "~/bin/emacs/color-theme-6.6.0/") load-path))  
+    
     ;;
     ;; Load some additional modes
     ;;
