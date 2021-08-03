@@ -85,7 +85,7 @@
     (setq load-path (cons (expand-file-name 
 			   "~/.emacs_modes") load-path))
     (setq load-path (cons (expand-file-name 
-			   "/usr/share/emacs/25.2/") load-path))  
+			   "/usr/share/emacs/26.3/") load-path))  
 
     (setq load-path (cons (expand-file-name 
 			   "~/bin/emacs") load-path))  
