@@ -1,0 +1,17 @@
+code --install-extension bungcip.better-toml
+code --install-extension donjayamanne.githistory
+code --install-extension formulahendry.auto-close-tag
+code --install-extension fpopa.get-line
+code --install-extension hansec.fortran-ls
+code --install-extension James-Yu.latex-workshop
+code --install-extension krvajalm.linter-gfortran
+code --install-extension lextudio.restructuredtext
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-toolsai.jupyter
+code --install-extension ms-vscode-remote.remote-ssh
+code --install-extension ms-vscode-remote.remote-ssh-edit
+code --install-extension ms-vscode.cpptools
+code --install-extension phr0s.bib
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension wayou.vscode-todo-highlight
