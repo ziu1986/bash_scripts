@@ -38,7 +38,7 @@ src_data() {
             ;;
         nird)
             echo "Mounting /tos-project1/NS2806K/sfalk/"
-            sshfs sfalk@login.nird.sigma2.no:/tos-project1/NS2806K/sfalk/ ${DATA}/nird_data
+            sshfs sfalk@login.nird.sigma2.no:/tos-project1/NS2806K/sfalk/ ${DATA}/nird
             ;;
         uio_home)
             echo "Mounting /uio/kant/geo-metos-u4/sfalk/"
@@ -60,14 +60,14 @@ unsrc_data() {
 use_conda() {
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/sfalk/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$('/home/sfalk/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/home/sfalk/anaconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/sfalk/anaconda3/etc/profile.d/conda.sh"
+        if [ -f "/home/sfalk/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/sfalk/miniconda3/etc/profile.d/conda.sh"
         else
-            export PATH="/home/sfalk/anaconda3/bin:$PATH"
+            export PATH="/home/sfalk/miniconda3/bin:$PATH"
         fi
     fi
     unset __conda_setup
