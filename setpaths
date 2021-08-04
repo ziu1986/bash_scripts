@@ -34,7 +34,7 @@ src_data() {
         astra)
             echo "Mounting ASTRA"
             #sshfs sfalk@abel.uio.no:/projects/researchers/researchers01/sfalk/ ${DATA}/astra_data
-            sshfs sfalk@login.uio.no:/net/astra/astra-01/sfalk/ ${DATA}/astra_data
+            sshfs sfalk@login.uio.no:/net/astra/astra-01/sfalk/ ${DATA}/astra
             ;;
         nird)
             echo "Mounting /tos-project1/NS2806K/sfalk/"
