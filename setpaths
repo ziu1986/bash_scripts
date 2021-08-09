@@ -17,7 +17,7 @@ alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
 src_data() {
     target=${1}
     case $target in
-        work)
+        saga)
             echo "Mounting saga/work"
             sshfs sfalk@login.saga.sigma2.no:/cluster/work/users/sfalk ${DATA}/saga
             ;;
@@ -48,7 +48,7 @@ src_data() {
             ;;
         *)
             echo "No valid mount point!"
-            echo "Options: work; input_data; BrXplo; CTM3_Oivind; astra; nird; uio_home"
+            echo "Options: saga; astra; nird; uio_home"
     esac
     #
 }
