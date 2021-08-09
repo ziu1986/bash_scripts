@@ -1,4 +1,6 @@
 #! /bin/bash
+# Activate auto completion for environmental variable
+shopt -s direxpand
 
 # Setting all neccessary paths
 # General settings
