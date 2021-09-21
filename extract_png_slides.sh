@@ -16,6 +16,7 @@ for each in `ls *.pdf`; do
     png_file="`basename ${each} .pdf`.png"
     echo $each $png_file
     pdftoppm -png $each > $png_file
+    rm ${each}
 done
     
  
