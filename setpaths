@@ -19,6 +19,7 @@ LRZNAME=ra46zot
 # Mounting of network resources
 src_data() {
     target=${1}
+    mode=${2}
     case $target in
         saga)
             echo "Mounting saga/work"
@@ -50,14 +51,26 @@ src_data() {
             sshfs sfalk@login.uio.no:/uio/kant/geo-metos-u1/sfalk/privat/Documents/ /kant
             ;;
         nas)
-            echo "Mounting nas home"
-            sudo mount -t cifs //nas.ads.mwn.de/ra46zot $DATA/nas/$LRZNAME -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
-            sudo mount -t cifs //nas.ads.mwn.de/Mwntemp $DATA/nas/tmpshare -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
-            sudo mount -t cifs //nas.ads.mwn.de/LMGW $DATA/nas/LMGW -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+            case $mode in
+                home)
+                    echo "Mounting nas home"
+                    sudo mount -t cifs //nas.ads.mwn.de/ra46zot $DATA/nas/$LRZNAME -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+                    ;;
+                share)
+                    echo "Mounting nas share"
+                    sudo mount -t cifs //nas.ads.mwn.de/Mwntemp $DATA/nas/tmpshare -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+                    ;;
+                lmgw)
+                    echo "Mounting nas LMGW"
+                    sudo mount -t cifs //nas.ads.mwn.de/LMGW $DATA/nas/LMGW -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+                    ;;
+                *)
+                    echo "No valid mount point!"
+                    echo "Options: home; share; lmgw"
             ;;
         *)
             echo "No valid mount point!"
-            echo "Options: saga; astra; nird; uio_home"
+            echo "Options: saga; astra; nird; uio_home; nas <opt>"
     esac
     #
 }
