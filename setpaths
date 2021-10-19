@@ -13,6 +13,9 @@ export PATH=$PATH:${HOME}/Programs/grib_api-1.28.0/bin/bin
 # Include Panoply
 alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
 
+# Name
+LRZNAME=ra46zot
+
 # Mounting of network resources
 src_data() {
     target=${1}
@@ -46,6 +49,12 @@ src_data() {
             echo "Mounting /uio/kant/geo-metos-u4/sfalk/"
             sshfs sfalk@login.uio.no:/uio/kant/geo-metos-u1/sfalk/privat/Documents/ /kant
             ;;
+        nas)
+            echo "Mounting nas home"
+            sudo mount -t cifs //nas.ads.mwn.de/ra46zot $DATA/nas/$LRZNAME -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+            sudo mount -t cifs //nas.ads.mwn.de/Mwntemp $DATA/nas/tmpshare -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+            sudo mount -t cifs //nas.ads.mwn.de/LMGW $DATA/nas/LMGW -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
+            ;;
         *)
             echo "No valid mount point!"
             echo "Options: saga; astra; nird; uio_home"
@@ -62,14 +71,14 @@ unsrc_data() {
 use_conda() {
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/sfalk/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$('/home/sfalk/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/home/sfalk/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/sfalk/miniconda3/etc/profile.d/conda.sh"
+        if [ -f "/home/sfalk/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/sfalk/anaconda3/etc/profile.d/conda.sh"
         else
-            export PATH="/home/sfalk/miniconda3/bin:$PATH"
+            export PATH="/home/sfalk/anaconda3/bin:$PATH"
         fi
     fi
     unset __conda_setup
