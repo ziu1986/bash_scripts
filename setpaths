@@ -39,7 +39,6 @@ src_data() {
             ;;
         astra)
             echo "Mounting ASTRA"
-            #sshfs sfalk@abel.uio.no:/projects/researchers/researchers01/sfalk/ ${DATA}/astra_data
             sshfs sfalk@login.uio.no:/net/astra/astra-01/sfalk/ ${DATA}/astra
             ;;
         nird)
@@ -51,27 +50,12 @@ src_data() {
             sshfs sfalk@login.uio.no:/uio/kant/geo-metos-u1/sfalk/privat/Documents/ /kant
             ;;
         nas)
-            case $mode in
-                home)
-                    echo "Mounting nas home"
-                    sudo mount -t cifs //nas.ads.mwn.de/ra46zot $DATA/nas/$LRZNAME -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
-                    ;;
-                share)
-                    echo "Mounting nas share"
-                    sudo mount -t cifs //nas.ads.mwn.de/Mwntemp $DATA/nas/tmpshare -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
-                    ;;
-                lmgw)
-                    echo "Mounting nas LMGW"
-                    sudo mount -t cifs //nas.ads.mwn.de/LMGW $DATA/nas/LMGW -o username=$LRZNAME,domain=ADS,vers=2.1,nodfs
-                    ;;
-                *)
-                    echo "No valid mount point!"
-                    echo "Options: home; share; lmgw"
-            esac
+            echo "Mounting nas"
+            sudo mount -t davfs https://webdisk.ads.mwn.de/hcwebdav $DATA/nas
             ;;
         *)
             echo "No valid mount point!"
-            echo "Options: saga; astra; nird; uio_home; nas <opt>"            
+            echo "Options: saga; astra; nird; uio_home; nas"            
     esac
     #
 }
