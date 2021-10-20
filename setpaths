@@ -51,7 +51,7 @@ src_data() {
             ;;
         nas)
             echo "Mounting nas"
-            sudo mount -t davfs https://webdisk.ads.mwn.de/hcwebdav $DATA/nas
+            sudo mount -t davfs -o uid=sfalk,gid=sfalk https://webdisk.ads.mwn.de/hcwebdav $DATA/nas
             ;;
         *)
             echo "No valid mount point!"
