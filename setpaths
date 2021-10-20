@@ -67,10 +67,11 @@ src_data() {
                 *)
                     echo "No valid mount point!"
                     echo "Options: home; share; lmgw"
+            esac
             ;;
         *)
             echo "No valid mount point!"
-            echo "Options: saga; astra; nird; uio_home; nas <opt>"
+            echo "Options: saga; astra; nird; uio_home; nas <opt>"            
     esac
     #
 }
