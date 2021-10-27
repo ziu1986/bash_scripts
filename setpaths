@@ -9,12 +9,17 @@ export DATA=/data
 export PY_SCRIPTS=$WORKSPACE/Python
 export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
 export PATH=$PATH:${HOME}/Programs/grib_api-1.28.0/bin/bin
+export MODELS=$WORKSPACE/Models
+# ICON docker
+export ICON_ROOT=$MODELS/icon-aes
+export ICON_POOL=$DATA/icon
 
 # Include Panoply
 alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
 
 # Name
 LRZNAME=ra46zot
+DKRZNAME=m300917
 
 # Mounting of network resources
 src_data() {
@@ -55,7 +60,7 @@ src_data() {
             ;;
         *)
             echo "No valid mount point!"
-            echo "Options: saga; astra; nird; uio_home; nas"            
+            echo "Options: saga; astra; nird; uio_home; nas"
     esac
     #
 }
