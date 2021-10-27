@@ -6,16 +6,19 @@ shopt -s direxpand
 # General settings
 export WORKSPACE=$HOME
 export DATA=/data
+export SOFTWARE=$WORKSPACE/Software
 export PY_SCRIPTS=$WORKSPACE/Python
-export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
-export PATH=$PATH:${HOME}/Programs/grib_api-1.28.0/bin/bin
 export MODELS=$WORKSPACE/Models
+
+export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
+export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
+
 # ICON docker
 export ICON_ROOT=$MODELS/icon-aes
 export ICON_POOL=$DATA/icon
 
 # Include Panoply
-alias panoply=${HOME}/Programs/PanoplyJ/panoply.sh
+alias panoply=${SOFTWARE}/PanoplyJ/panoply.sh
 
 # Name
 LRZNAME=ra46zot
