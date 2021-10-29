@@ -14,8 +14,23 @@ export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
 export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 
 # ICON docker
-export ICON_ROOT=$MODELS/icon-aes
-export ICON_POOL=$DATA/icon
+set_up () {
+    opt=${1}
+    case $opt in
+        aes)
+            echo "Setting ICON-AES"
+            export ICON_ROOT=$MODELS/icon-aes
+            ;;
+        les)
+            echo "Setting ICON-LES"
+            export ICON_ROOT=$MODELS/icon-les
+            ;;
+        *)
+            echo "Valid options: aes, les"
+            ;;
+    esac
+    export ICON_POOL=$DATA/icon
+}
 
 # Include Panoply
 alias panoply=${SOFTWARE}/PanoplyJ/panoply.sh
