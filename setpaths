@@ -19,11 +19,11 @@ set_up () {
     case $opt in
         aes)
             echo "Setting ICON-AES"
-            export ICON_ROOT=$MODELS/icon-aes
+            export ICON_ROOT=$MODELS/icon/icon-aes
             ;;
         les)
             echo "Setting ICON-LES"
-            export ICON_ROOT=$MODELS/icon-les
+            export ICON_ROOT=$MODELS/icon/icon-les
             ;;
         *)
             echo "Valid options: aes, les"
