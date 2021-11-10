@@ -29,7 +29,7 @@ set_up () {
             echo "Valid options: aes, les"
             ;;
     esac
-    export ICON_POOL=$DATA/icon
+    export ICON_POOL=$DATA/icon/pool
 }
 
 # Include Panoply
