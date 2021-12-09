@@ -15,21 +15,30 @@ export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 
 # ICON docker
 set_up () {
-    opt=${1}
-    case $opt in
-        aes)
-            echo "Setting ICON-AES"
-            export ICON_ROOT=$MODELS/icon/icon-aes
-            ;;
-        les)
-            echo "Setting ICON-LES"
-            export ICON_ROOT=$MODELS/icon/icon-les
+    opt1=${1}
+    opt2=${2}
+    opt_str="Valid options: icon aes, icon les"
+    case $opt1 in
+        icon)
+            export ICON_POOL=$DATA/icon/pool
+            case $opt2 in
+                aes)
+                    echo "Setting ICON-AES"
+                    export ICON_ROOT=$MODELS/icon/icon-aes
+                    ;;
+                les)
+                    echo "Setting ICON-LES"
+                    export ICON_ROOT=$MODELS/icon/icon-les
+                    ;;
+                *)
+                    echo ${opt_str}
+                    ;;
+            esac
             ;;
         *)
-            echo "Valid options: aes, les"
-            ;;
+        echo ${opt_str}
+        ;;
     esac
-    export ICON_POOL=$DATA/icon/pool
 }
 
 # Include Panoply
