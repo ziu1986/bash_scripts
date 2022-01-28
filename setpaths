@@ -38,7 +38,7 @@ set_up () {
         blue)
             export BLUE_ROOT=$MODELS/blue
             export BLUE_MODEL=${BLUE_ROOT}/blue_code
-            export BLUE_SCRIPTS=${BLUE_ROOT}/blue_scripts
+            export BLUE_SCRIPTS=${BLUE_ROOT}/blue_RunScripts
             # Activate conda environ
             use_conda
             conda activate blue_env
