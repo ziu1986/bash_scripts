@@ -34,6 +34,16 @@ set_up () {
                     echo ${opt_str}
                     ;;
             esac
+            update_icon() {
+                cd $ICON_ROOT
+                git fetch
+                git submodule update --recursive
+                git pull --recurse-submodules
+                cd externals/jsbach
+                git switch dev
+                git pull
+                git merge dev
+            }
             ;;
         blue)
             export BLUE_ROOT=$MODELS/blue
