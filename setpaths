@@ -53,6 +53,20 @@ set_up () {
             use_conda
             conda activate blue_env
             ;;
+        mpi-esm)
+            case ${opt2} in
+                hbp)
+                    echo "Setting MPI-ESM HBP"
+                    MPIESM_ROOT=${MODELS}/mpi-esm/hbp_mpiesm-landveg
+                    ;;
+                release)
+                    echo "Setting MPI-ESM release"
+                    MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-1.2.01p5
+                    ;;
+                *)
+                    echo "Setting MPI-ESM landveg"
+                    MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-landveg
+                    ;;
         *)
         echo ${opt_str}
         ;;
@@ -133,7 +147,34 @@ use_conda() {
     # <<< conda initialize <<<
 }
 
+# SSH-AGENT
+SSH_ENV="$HOME/.ssh/agent-environment"    
+
+trap '
+         test -n "$SSH_AGENT_PID"  && eval `ssh-agent -k`
+ ' 0                                          
+
+function start_agent {                                                      
+    echo -n "Initialising new SSH agent ... "                                
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"            
+    echo succeeded                                                          
+    chmod 600 "${SSH_ENV}"                                                  
+    source "${SSH_ENV}" > /dev/null                                         
+    /usr/bin/ssh-add;                                                   
+}
+
+if [[ -f "${SSH_ENV}" ]]                                                    
+then                                                                        
+    source "${SSH_ENV}" > /dev/null                                         
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {       
+        start_agent;                                                        
+    }                                                                       
+else                                                                        
+    start_agent;                                                            
+fi
+
 # Alias
 alias ssh_centos='ssh -X -i ~/.ssh/iaas-cloud_ceres.key.pub centos@158.39.75.138'
+
 
 echo "Setting work environment..."
