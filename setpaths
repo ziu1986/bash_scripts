@@ -57,19 +57,21 @@ set_up () {
             case ${opt2} in
                 hbp)
                     echo "Setting MPI-ESM HBP"
-                    MPIESM_ROOT=${MODELS}/mpi-esm/hbp_mpiesm-landveg
+                    export MPIESM_ROOT=${MODELS}/mpi-esm/hbp_mpiesm-landveg
                     ;;
                 release)
                     echo "Setting MPI-ESM release"
-                    MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-1.2.01p5
+                    export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-1.2.01p5
                     ;;
                 *)
                     echo "Setting MPI-ESM landveg"
-                    MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-landveg
+                    export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-landveg
                     ;;
+            esac
+            ;;
         *)
-        echo ${opt_str}
-        ;;
+            echo ${opt_str}
+            ;;
     esac
 }
 
