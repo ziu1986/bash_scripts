@@ -17,7 +17,7 @@ export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 set_up () {
     opt1=${1}
     opt2=${2}
-    opt_str="Valid options: icon aes, icon les"
+    opt_str="Valid options: icon aes, icon les, icon mpi"
     case $opt1 in
         icon)
             export ICON_POOL=$DATA/icon/pool
@@ -29,6 +29,10 @@ set_up () {
                 les)
                     echo "Setting ICON-LES"
                     export ICON_ROOT=$MODELS/icon/icon-les
+                    ;;
+                mpi)
+                    echo "Setting ICON-MPI"
+                    export ICON_ROOT=$MODELS/icon/icon-mpim
                     ;;
                 *)
                     echo ${opt_str}
