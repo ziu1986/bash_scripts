@@ -13,6 +13,10 @@ export MODELS=$WORKSPACE/Models
 export PYTHONPATH=$PYTHONPATH:$PY_SCRIPTS
 export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 
+# Name
+LRZNAME=ra46zot
+DKRZNAME=m300917
+
 # ICON docker
 set_up () {
     opt1=${1}
@@ -48,6 +52,42 @@ set_up () {
                 git pull
                 git merge dev
             }
+            update_pool_data() {
+               
+                pool_data_levante=/pool/data/ICON/grids/public/mpim
+                pool_data_jsb_forcing=/pool/data/JSBACH/jsbalone_forcing/R02B04
+                grid=0043
+                # JSB standalone
+                revision=r0004
+
+                # Get icon grid
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/icon_grid_${grid}_R02B04_G.nc $DATA/icon/
+                # Get boundary & initial conditions (land)
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/land/${revision}/*1979* $DATA/icon/
+                # Greenhous gases
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/independent/greenhouse_gases/greenhouse_historical_plus.nc $DATA/icon/
+                # Atmospheric forcing (GSWP3)
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_jsb_forcing}/${grid}/GSWP3-W5E5/data/*_200[0,1]* $DATA/icon/
+                
+                # For AMIP
+                revision=r0001
+                # Initial conditions
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/initial_condition/${revision}/ifs2icon_1979010100_R02B04_G.nc $DATA/icon/
+                # Atmospheric aerosol
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/aerosol_kinne/${revision}/bc_aeropt_kinne_lw_b16_coa.nc $DATA/icon/
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/aerosol_kinne/${revision}/bc_aeropt_kinne_sw_b14_coa.nc $DATA/icon/
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/aerosol_kinne/${revision}/bc_aeropt_kinne_sw_b14_fin_1850.nc $DATA/icon/
+                # Volcanic aerosol
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/independent/CMIP6Forcing/bc_aeropt_cmip6_volc_lw_b16_sw_b14_200[0,1]* $DATA/icon/
+                # Ozone
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/ozone/${revision}/*_200[0,1]* $DATA/icon/
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/independent/greenhouse_gases/bc_ozone_cariolle.nc $DATA/icon/
+                # SST and SIC
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/sst_and_seaice/${revision}/*1979*.nc $DATA/icon/
+                # Solar radiation
+                rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/independent/solar_radiation/3.2/swflux_14band_cmip6_1850-2299-v3.2.nc $DATA/icon/
+            }
+                
             ;;
         blue)
             export BLUE_ROOT=$MODELS/blue
@@ -81,10 +121,6 @@ set_up () {
 
 # Include Panoply
 alias panoply=${SOFTWARE}/PanoplyJ/panoply.sh
-
-# Name
-LRZNAME=ra46zot
-DKRZNAME=m300917
 
 # Mounting of network resources
 src_data() {
