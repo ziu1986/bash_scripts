@@ -60,6 +60,9 @@ set_up () {
                 # JSB standalone
                 revision=r0004
 
+                #target=$(eval echo $(<${ICON_ROOT}/../scripts/rsync_filelist_jsbstandalone))
+                #echo $target > tmp_list
+
                 # Get icon grid
                 rsync -avzRL $DKRZNAME@levante.dkrz.de:${pool_data_levante}/${grid}/icon_grid_${grid}_R02B04_G.nc $DATA/icon/
                 # Get boundary & initial conditions (land)
@@ -121,6 +124,9 @@ set_up () {
 
 # Include Panoply
 alias panoply=${SOFTWARE}/PanoplyJ/panoply.sh
+
+# Include pspdftool
+alias pspdftool=${SOFTWARE}/pspdftool-0.03/pspdftool
 
 # Mounting of network resources
 src_data() {
