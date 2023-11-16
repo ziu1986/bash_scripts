@@ -110,11 +110,22 @@ set_up () {
                     echo "Setting MPI-ESM release"
                     export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-1.2.01p5
                     ;;
+                mpiesm)
+                    echo "Setting MPI-ESM"
+                    export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm
+                    ;;
                 *)
                     echo "Setting MPI-ESM landveg"
                     export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-landveg
                     ;;
             esac
+            update_mpiesm() {
+                # On branch mpiesm-landveg/mpiesm
+                git fetch
+                git submodule sync
+                git submodule update --recursive
+                git pull --recurse-submodules
+            }
             ;;
         *)
             echo ${opt_str}
