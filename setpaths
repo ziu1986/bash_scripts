@@ -16,6 +16,7 @@ export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 # Name
 LRZNAME=ra46zot
 DKRZNAME=m300917
+KITNAME=ki3491
 
 # ICON docker
 set_up () {
@@ -231,6 +232,11 @@ then
 else                                                                        
     start_agent;                                                            
 fi
+
+# KIT VPN
+function vpn_kit() {
+    { sudo openvpn --config ~/Downloads/kit.ovpn }
+}
 
 # Alias
 alias ssh_centos='ssh -X -i ~/.ssh/iaas-cloud_ceres.key.pub centos@158.39.75.138'
