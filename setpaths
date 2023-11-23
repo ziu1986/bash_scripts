@@ -235,7 +235,7 @@ fi
 
 # KIT VPN
 function vpn_kit {
-    gnome-terminal --command="bash -c 'sudo openvpn --config ~/Downloads/kit.ovpn; $SHELL'"
+    gnome-terminal --command="bash -c 'sudo openvpn --config $HOME/.openvpn/kit.ovpn; $SHELL'"
 }
 
 # Alias
