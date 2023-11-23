@@ -244,4 +244,6 @@ alias bwsync='~/Software/bwSyncShare-Linux64*.AppImage &'
 alias ssh_centos='ssh -X -i ~/.ssh/iaas-cloud_ceres.key.pub centos@158.39.75.138'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
 
+alias ssh_horeka='ssh -Y $KITNAME@horeka.scc.kit.edu'
+
 echo "Setting work environment..."
