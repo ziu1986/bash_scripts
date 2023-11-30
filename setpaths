@@ -239,7 +239,9 @@ function vpn_kit {
 }
 
 # Alias
-alias bwsync='~/Software/bwSyncShare-Linux64*.AppImage &'
+alias bwsync='$SOFTWARE/bwSyncShare-Linux64*.AppImage &'
+
+alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage &'
 
 alias ssh_centos='ssh -X -i ~/.ssh/iaas-cloud_ceres.key.pub centos@158.39.75.138'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
