@@ -43,6 +43,7 @@ set_up () {
                     export EMAC_ROOT=$MODELS/emac/MESSy
                     ;;
             esac
+            ;;
         icon)
             export ICON_POOL=$DATA/icon/pool
             case $opt2 in
