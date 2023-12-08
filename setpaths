@@ -20,10 +20,29 @@ KITNAME=ki3491
 
 # ICON docker
 set_up () {
-    opt1=${1}
-    opt2=${2}
-    opt_str="Valid options: icon aes, icon les, icon mpi"
+    opt1=${1} # Model name
+    opt2=${2} # Specific cloned version
+    # Check machine name
+    case $HOSTNAME in
+        imk-asf-modlsf)
+            opt_str="Valid options: messy"
+            ;;
+        geoloek-zs-u4)            
+            opt_str="Valid options: icon mpi, mpiesm [hbp, release, landveg, <empty string>]"
+            ;;
+        *)
+            echo "Machine not set up."
+            ;;
+    esac
+    # Toggle through options
     case $opt1 in
+        messy)
+            case $opt2 in
+                *)
+                    echo "Setting $opt1 $opt2"
+                    export EMAC_ROOT=$MODELS/emac/MESSy
+                    ;;
+            esac
         icon)
             export ICON_POOL=$DATA/icon/pool
             case $opt2 in
@@ -101,7 +120,7 @@ set_up () {
             use_conda
             conda activate blue_env
             ;;
-        mpi-esm)
+        mpiesm)
             case ${opt2} in
                 hbp)
                     echo "Setting MPI-ESM HBP"
@@ -111,13 +130,13 @@ set_up () {
                     echo "Setting MPI-ESM release"
                     export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-1.2.01p5
                     ;;
-                mpiesm)
-                    echo "Setting MPI-ESM"
-                    export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm
-                    ;;
-                *)
+                landveg)
                     echo "Setting MPI-ESM landveg"
                     export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm-landveg
+                    ;;
+                *)
+                    echo "Setting MPI-ESM"
+                    export MPIESM_ROOT=${MODELS}/mpi-esm/mpiesm
                     ;;
             esac
             update_mpiesm() {
