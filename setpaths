@@ -211,16 +211,25 @@ unsrc_data() {
 }
 
 use_conda() {
+    case $HOSTNAME in
+        imk-asf-modlsf)
+            CONDA_DIR=$SOFTWARE/miniconda3
+            ;;
+        *)
+            CONDA_DIR=$HOME/anaconda3
+            ;;
+    esac
+    echo "Initilize conda: $CONDA_DIR"
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/sfalk/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$('${CONDA_DIR}/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/home/sfalk/anaconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/sfalk/anaconda3/etc/profile.d/conda.sh"
+        if [ -f "${CONDA_DIR}/etc/profile.d/conda.sh" ]; then
+            . "${CONDA_DIR}/etc/profile.d/conda.sh"
         else
-            export PATH="/home/sfalk/anaconda3/bin:$PATH"
+            export PATH="${CONDA_DIR}/bin:$PATH"
         fi
     fi
     unset __conda_setup
@@ -252,11 +261,6 @@ then
 else                                                                        
     start_agent;                                                            
 fi
-
-# KIT VPN
-function vpn_kit {
-    gnome-terminal --command="bash -c 'sudo openvpn --config $HOME/.openvpn/kit.ovpn; $SHELL'"
-}
 
 # Alias
 alias bwsync='$SOFTWARE/bwSyncShare-Linux64*.AppImage &'
