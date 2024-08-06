@@ -268,5 +268,5 @@ alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage &'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
 alias ssh_horeka='ssh -Y $KITNAME@horeka.scc.kit.edu'
 alias ssh_lsdf='ssh -Y $KITNAME@os-login.lsdf.kit.edu'
-
+alias gmake='make'
 echo "Setting work environment..."
