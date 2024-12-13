@@ -263,7 +263,7 @@ else
 fi
 
 # Alias
-alias bwsync='$SOFTWARE/bwSyncShare-Linux64*20334.AppImage &'
+alias bwsync='$SOFTWARE/bwSyncShare-Linux64*.AppImage &'
 alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage &'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
 alias ssh_horeka='ssh -Y $KITNAME@horeka.scc.kit.edu'
