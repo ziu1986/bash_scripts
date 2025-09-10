@@ -17,6 +17,7 @@ export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 LRZNAME=ra46zot
 DKRZNAME=m300917
 KITNAME=ki3491
+UC3NAME=ka_${KITNAME} # bwUniCluster
 
 # ICON docker
 set_up () {
@@ -264,9 +265,10 @@ fi
 
 # Alias
 alias bwsync='$SOFTWARE/bwSyncShare-Linux64*.AppImage &'
-alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage &'
+alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage --no-sandbox &'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
 alias ssh_horeka='ssh -Y $KITNAME@horeka.scc.kit.edu'
 alias ssh_lsdf='ssh -Y $KITNAME@os-login.lsdf.kit.edu'
+alias ssh_uc3='ssh -Y $UC3NAME@uc3.scc.kit.edu' # _<*>/15
 alias gmake='make'
 echo "Setting work environment..."
