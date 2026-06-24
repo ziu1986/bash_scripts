@@ -213,7 +213,7 @@ unsrc_data() {
 
 use_conda() {
     case $HOSTNAME in
-        imk-asf-modlsf)
+        imkasf-modlnsf)
             CONDA_DIR=$SOFTWARE/miniconda3
             ;;
         *)
@@ -269,6 +269,6 @@ alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage --no-sandbox &'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
 alias ssh_horeka='ssh -Y $KITNAME@horeka.scc.kit.edu'
 alias ssh_lsdf='ssh -Y $KITNAME@os-login.lsdf.kit.edu'
-alias ssh_uc3='ssh -Y $UC3NAME@uc3.scc.kit.edu' # _<*>/15
+alias ssh_uc3='ssh -Y $UC3NAME@uc3.scc.kit.edu' # bwuc_<*>/15
 alias gmake='make'
 echo "Setting work environment..."
