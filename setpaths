@@ -17,6 +17,7 @@ export PATH=$PATH:$SOFTWARE/grib_api-1.28.0/bin/bin
 LRZNAME=ra46zot
 DKRZNAME=m300917
 KITNAME=ki3491
+HK2NAME=ka_${KITNAME} # HoreKA2
 UC3NAME=ka_${KITNAME} # bwUniCluster
 
 # ICON docker
@@ -268,6 +269,7 @@ alias bwsync='$SOFTWARE/bwSyncShare-Linux64*.AppImage &'
 alias mendeley='$SOFTWARE/mendeley-reference-manager*.AppImage --no-sandbox &'
 alias ssh_levante='ssh -Y $DKRZNAME@levante.dkrz.de'
 alias ssh_horeka='ssh -Y $KITNAME@horeka.scc.kit.edu'
+alias ssh_horeka2='ssh -Y $HK2NAME@hk2-x86-login.scc.kit.edu' # hc2
 alias ssh_lsdf='ssh -Y $KITNAME@os-login.lsdf.kit.edu'
 alias ssh_uc3='ssh -Y $UC3NAME@uc3.scc.kit.edu' # bwuc_<*>/15
 alias gmake='make'
